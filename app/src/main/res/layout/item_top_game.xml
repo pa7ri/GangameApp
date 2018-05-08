@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="deal"
-            type="com.example.gangame.Deal" />
+            name="topGame"
+            type="com.example.gangame.TopGame" />
     </data>
+
 <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_height">
@@ -23,134 +24,110 @@
             style="@style/Image"
             android:layout_width="90dp"
             android:layout_height="80dp"
-            app:imageUrl="@{deal.thumb}"
+            app:imageUrl="@{topGame.thumb}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintHorizontal_bias="0.66"
+            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_deals_pikachu" />
+            tools:srcCompat="@drawable/ic_deals_pikachu" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.30833334" />
 
         <TextView
             android:id="@+id/titleGame"
+            android:text="@{topGame.title}"
             style="@style/Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_xsmall"
             android:maxLines="2"
-            android:text="@{deal.title}"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toEndOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Hellblade" />
 
         <TextView
-            android:id="@+id/RatingsGame"
+            android:id="@+id/publisherGame"
+            android:text="@{topGame.publisher}"
             style="@style/Subtitle"
             android:layout_marginStart="@dimen/margin_small"
-            android:text="@string/ratings"
+            tools:text="@string/publisher"
             app:layout_constraintStart_toEndOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/titleGame" />
 
         <TextView
-            android:id="@+id/normalPriceText"
-            style="@style/SecondPrice"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintBottom_toBottomOf="@+id/dealPriceText"
-            app:layout_constraintEnd_toStartOf="@+id/dealPriceText"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/dealPriceText"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/dealPriceText"
+            android:id="@+id/priceGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_xmedium"
             android:layout_marginEnd="8dp"
-            android:text="@string/deal_price"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@{String.valueOf(topGame.priceFormatted)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4,99€" />
+
+        <TextView
+            android:id="@+id/positionGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(topGame.position)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/normalPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:layout_marginStart="@dimen/margin_small"
-            android:text="@{deal.normalPriceFormatted}"
-            android:textSize="@dimen/text_small"
-            app:layout_constraintEnd_toEndOf="@+id/normalPriceText"
-            app:layout_constraintStart_toStartOf="@+id/normalPriceText"
-            app:layout_constraintTop_toBottomOf="@+id/normalPriceText"
-            tools:text="@string/sample_money" />
-
-        <TextView
-            android:id="@+id/dealPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:layout_marginStart="@dimen/margin_small"
-            android:text="@{deal.salePriceFormatted}"
-            android:textSize="@dimen/text_medium"
-            app:layout_constraintEnd_toEndOf="@+id/dealPriceText"
-            app:layout_constraintStart_toStartOf="@+id/dealPriceText"
-            app:layout_constraintTop_toBottomOf="@+id/dealPriceText"
-            tools:text="@string/sample_less_money" />
-
-        <ImageView
-            android:id="@+id/metecriticImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_xmedium"
-            android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/RatingsGame"
-            app:srcCompat="@drawable/ic_metacritic_rating" />
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1º" />
 
         <ImageView
             android:id="@+id/steamImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/margin_xmedium"
             android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintStart_toEndOf="@+id/metacriticScore"
-            app:layout_constraintTop_toBottomOf="@+id/RatingsGame"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/publisherGame"
             app:srcCompat="@drawable/ic_steam_rating" />
 
-        <TextView
-            android:id="@+id/metacriticScore"
+        <ImageView
+            android:id="@+id/ownerImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="@{String.valueOf(deal.metacriticScore)}"
-            app:layout_constraintStart_toEndOf="@+id/metecriticImage"
-            app:layout_constraintTop_toBottomOf="@+id/RatingsGame"
-            tools:text="@string/sample_meta_score" />
+            app:layout_constraintStart_toEndOf="@+id/steamScore"
+            app:layout_constraintTop_toBottomOf="@+id/publisherGame"
+            app:srcCompat="@drawable/ic_owners" />
 
         <TextView
             android:id="@+id/steamScore"
+            android:text="@{String.valueOf(topGame.steamRating)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="@{String.valueOf(deal.steamRating)}"
+            tools:text="@string/sample_meta_score"
             app:layout_constraintStart_toEndOf="@+id/steamImage"
-            app:layout_constraintTop_toBottomOf="@+id/RatingsGame"
-            tools:text="@string/sample_steam_score" />
+            app:layout_constraintTop_toBottomOf="@+id/publisherGame" />
+
+        <TextView
+            android:id="@+id/ownerScore"
+            android:text="@{String.valueOf(topGame.owners)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/margin_small"
+            tools:text="@string/sample_steam_score"
+            app:layout_constraintStart_toEndOf="@+id/ownerImage"
+            app:layout_constraintTop_toBottomOf="@+id/publisherGame" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
