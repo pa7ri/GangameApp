@@ -1,23 +1,13 @@
 package com.example.gangame
 
-import android.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.gangame.deals.DealsFragment
 import com.example.gangame.owned.TopOwnedFragment
 import com.example.gangame.rated.TopRatedFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ActionMenuView
-import android.widget.FrameLayout
 
 
 class MainActivity : AppCompatActivity() {
