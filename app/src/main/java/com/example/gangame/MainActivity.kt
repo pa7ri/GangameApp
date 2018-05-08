@@ -1,12 +1,24 @@
 package com.example.gangame
 
+import android.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
+import android.widget.Toast
 import com.example.gangame.deals.DealsFragment
 import com.example.gangame.owned.TopOwnedFragment
 import com.example.gangame.rated.TopRatedFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.ActionMenuView
+import android.widget.FrameLayout
+
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -24,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initView()
+        setListeners()
 
         navigationView.selectedItemId = DEFAULT_OPTION
         navigationView.setOnNavigationItemSelectedListener { item ->
@@ -51,6 +64,12 @@ class MainActivity : AppCompatActivity() {
                     .beginTransaction()
                     .add(R.id.fragmentContainer, fragments[DEFAULT_OPTION])
                     .commit()
+        }
+    }
+
+    private fun setListeners(){
+        credentialsButton.setOnClickListener {
+            Toast.makeText(baseContext, resources.getString(R.string.credentials), Toast.LENGTH_SHORT).show()
         }
     }
 }
