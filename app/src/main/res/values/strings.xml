@@ -3,4 +3,14 @@
     <string name="title_top_rated">Top Rated</string>
     <string name="title_most_owned">Most Owned</string>
     <string name="title_deals">Deals</string>
+    <string name="original_price">Price</string>
+    <string name="deal_price">Deal Price</string>
+    <string name="sample_money">9,99€</string>
+    <string name="sample_less_money">4.99€</string>
+    <string name="sample_meta_score">14</string>
+    <string name="sample_steam_score">135</string>
+    <string name="ratings">Ratings</string>
+    <string name="publisher">publisher</string>
+
+    <string name="credentials">Icons made by Roundicons Freebies from Flaticon is licensed by Creative Commons BY 3.0</string>
 </resources>

@@ -1,13 +1,13 @@
 package com.example.gangame.deals
 
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.util.Log
 import com.example.commons.BaseListFragment
 import com.example.commons.DataBindingRecyclerAdapter
 import com.example.gangame.BR
-import com.example.gangame.Deal
 import com.example.gangame.R
+import com.example.gangame.data.GangameDataSource
+import com.example.gangame.Deal
 
 
 class DealsFragment: BaseListFragment() {
@@ -15,21 +15,25 @@ class DealsFragment: BaseListFragment() {
         return DataBindingRecyclerAdapter<Deal>(BR.deal, R.layout.item_deal)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        (listAdapter as DataBindingRecyclerAdapter<Deal>).items.addAll(getDummyDeals())
-        listAdapter.notifyDataSetChanged()
+    override fun updateItems() {
+       GangameDataSource
+               .getDeals()
+               .subscribe({ list ->
+                   replaceItems(list)
+               },{error ->
+                    showError(error)
+               })
     }
 
-    private fun getDummyDeals():ArrayList<Deal>{
-        return arrayListOf(Deal(
-          "Counter Strike",
-                0.99F,
-                9.99F,
-                80,
-                80,
-                "https://cdn.staticneo.com/w/pokemon/1/10/Alolan_Sandshrew.png"))
+    private fun showError(error: Throwable) {
+        Log.e("Error update data", error.message)
     }
 
-
+    private fun replaceItems(list : List<Deal>){
+        with(listAdapter as DataBindingRecyclerAdapter<Deal>){
+            items.clear()
+            items.addAll(list)
+            notifyDataSetChanged()
+        }
+    }
 }

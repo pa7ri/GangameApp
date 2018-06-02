@@ -1,2 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gangamesdk" />
+    package="com.example.gangamesdk" >
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>
