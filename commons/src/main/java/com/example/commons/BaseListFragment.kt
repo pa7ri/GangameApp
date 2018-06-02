@@ -10,6 +10,11 @@ abstract class BaseListFragment : BaseFragment(){
 
     lateinit var listAdapter : RecyclerView.Adapter<*>
 
+    override fun onResume() {
+        super.onResume()
+        updateItems()
+    }
+
     override fun getLayoutResId(): Int {
         return R.layout.fragment_list
     }
@@ -26,6 +31,8 @@ abstract class BaseListFragment : BaseFragment(){
         }
     }
 
+
+    abstract fun updateItems()
 
     abstract fun getAdapter() : RecyclerView.Adapter<*>
 }

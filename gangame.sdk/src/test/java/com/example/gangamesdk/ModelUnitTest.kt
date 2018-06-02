@@ -1,6 +1,8 @@
 package com.example.gangamesdk
 
+import com.example.gangamesdk.serializer.TopGameDeserializer
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.junit.Test
 import org.junit.Assert.*
 
@@ -25,7 +27,7 @@ class ModelUnitTest{
     "\"releaseDate\": 1382313600," +
     "\"lastChange\": 1525454594," +
     "\"dealRating\": \"9.1\"," +
-    "\"thumb\": \"https://steamcdn-a.akamaihd.net/steam/apps/252630/capsule_sm_120.jpg?t=1478022188\"}"
+    "\"thumb\": \"https://steamcdn-a.akamaihd.net/steam/apps/252630/capsule_sm_120.jpg\"}"
 
     private val JSON_TOP_GAME = "{" +
         "\"appid\": 570," +
@@ -54,21 +56,27 @@ class ModelUnitTest{
         assertEquals(deal.title, "Eldritch")
         assertEquals(deal.normalPrice, 14.99F)
         assertEquals(deal.salePrice, 1.49F)
-        assertEquals(deal.metacriticScore, "77")
-        assertEquals(deal.steamRating, "88")
-        assertEquals(deal.thumb, "https://steamcdn-a.akamaihd.net/steam/apps/252630/capsule_sm_120.jpg?t=1478022188")
+        assertEquals(deal.metacriticScore, 77)
+        assertEquals(deal.steamRating, 88)
+        assertEquals(deal.thumb, "https://steamcdn-a.akamaihd.net/steam/apps/252630/capsule_sm_120.jpg")
     }
 
     @Test
     fun topGameParsingTest(){
-        val topGameGson = Gson()
+        val topGameGson = GsonBuilder()
+                .registerTypeAdapter(TopGame::class.java, TopGameDeserializer())
+                .create()
+
         val topGame = topGameGson.fromJson(JSON_TOP_GAME, TopGame::class.java)
 
-        assertEquals(topGame.title, "Eldritch")
+
+        assertEquals(topGame.title, "Dota 2")
         assertEquals(topGame.price, 0F)
         assertEquals(topGame.owners, "100,000,000 .. 200,000,000")
         assertEquals(topGame.publisher, "Valve")
         assertEquals(topGame.position, 68)
         assertEquals(topGame.steamRating, 87)
+        //TODO : image for topGame
+        assertEquals(topGame.thumb, "https://steamcdn-a.akamaihd.net/steam/apps/570/capsule_sm_120.jpg")
     }
 }
